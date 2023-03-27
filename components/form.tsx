@@ -10,23 +10,24 @@ import {
   MenuDivider,
   Button,
   ButtonGroup,
+  Flex,
 } from "@chakra-ui/react";
 
 const Form = () => (
-  <div>
+  <Flex>
     <Input placeholder="Basic usage" />
-    <Menu>
+    {/*<Menu>
       <MenuButton as={Button} rightIcon={"V"}>
-        Actions
+        Select Board
       </MenuButton>
       <MenuList>
         <MenuItem>To do</MenuItem>
-        <MenuItem>Current</MenuItem>
+        <MenuItem>Currently</MenuItem>
         <MenuItem>Done</MenuItem>
       </MenuList>
-    </Menu>
+</Menu>*/}
     <Button colorScheme="blue">Add</Button>
-  </div>
+  </Flex>
 );
 
 export default Form;
