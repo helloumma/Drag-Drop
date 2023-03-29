@@ -9,25 +9,25 @@ import Form from "../components/form";
 
 export default function Home() {
   const [input, setInput] = useState<string>("");
-  const [todoList, setTodoList] = useState<[]>([]);
+  const [todoList, setTodoList] = useState<{ name: string }[]>([]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onSubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (input === "") return alert("please enter a value");
 
-    const newList: [] = todoList.slice();
+    const newList = todoList.slice();
     newList.splice(0, 0, { name: input });
     setTodoList(newList);
     setInput("");
   };
 
-  const containers = ["A", "B", "C"];
+  //const containers = ["A", "B", "C"];
   const [parent, setParent] = useState(null);
-  const draggableMarkup = <Draggable id="draggable">Drag me</Draggable>;
+  //const draggableMarkup = <Draggable id="draggable">Drag me</Draggable>;
 
   function handleDragEnd(event) {
     const { over } = event;
@@ -48,19 +48,26 @@ export default function Home() {
         {/* map over the list vals here so they can be draggable/droppable */}
         <Form input={input} onChange={onChange} onSubmit={onSubmit} />
         <DndContext onDragEnd={handleDragEnd}>
-          {parent === null ? draggableMarkup : null}
+          {/*parent === null ? draggableMarkup : null*/}
 
-          {containers.map((id) => (
+          {/*containers.map((id) => (
             // We updated the Droppable component so it would accept an `id`
             // prop and pass it to `useDroppable`
             <Droppable key={id} id={id}>
               {parent === id ? draggableMarkup : "Drop here"}
             </Droppable>
+          ))*/}
+
+          {todoList.map((items: any, id: number) => (
+            <Droppable key={id} id={id}>
+              {parent === id ? (
+                <Draggable id={`draggable-${id}`}>{items.name}</Draggable>
+              ) : (
+                <Draggable id={`draggable-${id}`}>{items.name}</Draggable>
+              )}
+            </Droppable>
           ))}
         </DndContext>
-        {todoList.map((items: any, id: number) => (
-          <p key={id}>{items.name}</p>
-        ))}
       </main>
     </>
   );

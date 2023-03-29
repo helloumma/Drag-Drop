@@ -25,7 +25,7 @@ const Form = ({ input, onChange, onSubmit }: form) => {
     <>
       <Flex>
         <Input value={input} placeholder="Add item" onChange={onChange} />
-        <Button colorScheme="blue" onClick={onSubmit}>
+        <Button colorScheme="blue" type="submit" onClick={onSubmit}>
           Add
         </Button>
       </Flex>
