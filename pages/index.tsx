@@ -60,11 +60,7 @@ export default function Home() {
 
           {todoList.map((items: any, id: number) => (
             <Droppable key={id} id={id}>
-              {parent === id ? (
-                <Draggable id={`draggable-${id}`}>{items.name}</Draggable>
-              ) : (
-                <Draggable id={`draggable-${id}`}>{items.name}</Draggable>
-              )}
+              <Draggable id={`draggable-${id}`}>{items.name}</Draggable>
             </Droppable>
           ))}
         </DndContext>
