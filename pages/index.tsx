@@ -8,6 +8,23 @@ import Droppable from "./Droppable";
 import Form from "../components/form";
 
 export default function Home() {
+  const [input, setInput] = useState<string>("");
+  const [todoList, setTodoList] = useState<[]>([]);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (input === "") return alert("please enter a value");
+
+    const newList: [] = todoList.slice();
+    newList.splice(0, 0, { name: input });
+    setTodoList(newList);
+    setInput("");
+  };
+
   const containers = ["A", "B", "C"];
   const [parent, setParent] = useState(null);
   const draggableMarkup = <Draggable id="draggable">Drag me</Draggable>;
@@ -28,7 +45,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Form />
+        {/* map over the list vals here so they can be draggable/droppable */}
+        <Form input={input} onChange={onChange} onSubmit={onSubmit} />
         <DndContext onDragEnd={handleDragEnd}>
           {parent === null ? draggableMarkup : null}
 
@@ -40,6 +58,9 @@ export default function Home() {
             </Droppable>
           ))}
         </DndContext>
+        {todoList.map((items: any, id: number) => (
+          <p key={id}>{items.name}</p>
+        ))}
       </main>
     </>
   );

@@ -12,39 +12,23 @@ import {
   ButtonGroup,
   Flex,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { ChangeEventHandler, MouseEventHandler } from "react";
 
-const Form = () => {
-  const [input, setInput] = useState<string>("");
-  //const [completedTaskCount, setCompletedTaskCount] = useState(0);
-  const [todoList, setTodoList] = useState<[]>([]);
+interface form {
+  input: string;
+  onChange: ChangeEventHandler<HTMLInputElement> | undefined;
+  onSubmit: MouseEventHandler<HTMLButtonElement> | undefined;
+}
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  };
-
-  const onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    if (input === "") return alert("please enter a value");
-
-    const newList = todoList.slice();
-    newList.splice(0, 0, { name: input });
-    setTodoList(newList);
-    setInput("");
-  };
-  console.log(todoList);
+const Form = ({ input, onChange, onSubmit }: form) => {
   return (
     <>
-    <Flex>
-      <Input value={input} placeholder="Add item" onChange={onChange} />
-      <Button colorScheme="blue" onClick={onSubmit}>
-        Add
-      </Button>
-     
-    </Flex>
-    {todoList.map((items: any, id: number) => (
-        <p key={id}>{items.name}</p>
-      ))}
+      <Flex>
+        <Input value={input} placeholder="Add item" onChange={onChange} />
+        <Button colorScheme="blue" onClick={onSubmit}>
+          Add
+        </Button>
+      </Flex>
     </>
   );
 };
