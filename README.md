@@ -21,6 +21,8 @@ Enables users to be able to add items through an input and, drag and drop these 
   npm run dev
 ```
 
+https://main--jolly-gingersnap-9c25c4.netlify.app/
+
 ### 💭Future Improvements
 
 - Testing
