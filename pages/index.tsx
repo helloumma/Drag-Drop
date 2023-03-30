@@ -10,6 +10,8 @@ import ToDoBoard from "../components/todo";
 import InProgressBoard from "../components/inProgress";
 import CompleteBoard from "../components/complete";
 
+type BoardType = "to-do" | "in-progress" | "done";
+
 export default function Home() {
   const [input, setInput] = useState<string>("");
   const [todoList, setTodoList] = useState<{ name: string; status: string }[]>(
@@ -30,12 +32,12 @@ export default function Home() {
     setInput("");
   };
 
-  const handleDragEnd = (event: any) => {
-    const { over } = event;
+  const handleDragEnd = (e: any) => {
+    const { over } = e;
     if (!over) return;
 
     const { id: parentId } = over;
-    const itemId = event.active.id;
+    const itemId = e.active.id;
 
     const newList = todoList.map((item, id) => {
       if (id === itemId) {
