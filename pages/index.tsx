@@ -62,7 +62,7 @@ export default function Home() {
         <Form input={input} onChange={onChange} onSubmit={onSubmit} />
         <DndContext onDragEnd={handleDragEnd}>
           <ToDoBoard>
-            {todoList.map((item, id) => {
+            {todoList.map((item, id: number) => {
               if (item.status === "to-do") {
                 return (
                   <Draggable key={id} id={id}>
