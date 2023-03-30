@@ -17,9 +17,6 @@ Enables users to be able to add items through an input and, drag and drop these 
 
 ### 🔧How to Run the App
 
-- Clone the repo
-- `cd` into the directory
-
 ```bash
   npm run dev
 ```
