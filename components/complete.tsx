@@ -10,6 +10,7 @@ export default function CompleteBoard(props) {
     padding: "10px",
     border: "1px solid black",
     marginBottom: "10px",
+    textDecoration: "line-through",
   };
 
   return (

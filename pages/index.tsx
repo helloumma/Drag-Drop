@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { DndContext } from "@dnd-kit/core";
 import Draggable from "./Draggable";
-import Droppable from "./Droppable";
 
 import Form from "../components/form";
 
@@ -31,28 +30,7 @@ export default function Home() {
     setInput("");
   };
 
-  //const containers = ["A", "B", "C"];
-  const [parent, setParent] = useState(null);
-  //const draggableMarkup = <Draggable id="draggable">Drag me</Draggable>;
-
   function handleDragEnd(event) {
-    //const { over } = event;
-
-    // If the item is dropped over a container, set it as the parent
-    // otherwise reset the parent to `null`
-    //setParent(over ? over.id : null);
-    /* const { over } = event;
-    if (!over) return;
-
-    const oldList = todoList.slice();
-    const itemId = parseInt(event.active.id.split("-")[1]);
-    const item = oldList.find((item) => item.name === event.active.innerText);
-    const newList = oldList.filter(
-      (item) => item.name !== event.active.innerText
-    );
-    item.status = over.id;
-    newList.push(item);
-    setTodoList(newList);*/
     const { over } = event;
     if (!over) return;
 
@@ -81,24 +59,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* map over the list vals here so they can be draggable/droppable */}
         <Form input={input} onChange={onChange} onSubmit={onSubmit} />
         <DndContext onDragEnd={handleDragEnd}>
-          {/*parent === null ? draggableMarkup : null*/}
-
-          {/*containers.map((id) => (
-            // We updated the Droppable component so it would accept an `id`
-            // prop and pass it to `useDroppable`
-            <Droppable key={id} id={id}>
-              {parent === id ? draggableMarkup : "Drop here"}
-            </Droppable>
-          ))*/}
-
-          {/*todoList.map((items: any, id: number) => (
-            <Droppable key={id} id={id}>
-              <Draggable id={`draggable-${id}`}>{items.name}</Draggable>
-            </Droppable>
-          ))*/}
           <ToDoBoard>
             {todoList.map((item, id) => {
               if (item.status === "to-do") {
@@ -132,43 +94,6 @@ export default function Home() {
               }
             })}
           </CompleteBoard>
-
-          {/*<div className="container">
-            <h2>To Do</h2>
-            <Droppable id="to-do">
-              {todoList
-                .filter((item) => item.status === "to-do")
-                .map((item) => (
-                  <Draggable key={item.name} id={`draggable-${item.name}`}>
-                    {item.name}
-                  </Draggable>
-                ))}
-            </Droppable>
-          </div>
-          <div className="container">
-            <h2>In Progress</h2>
-            <Droppable id="in-progress">
-              {todoList
-                .filter((item) => item.status === "in-progress")
-                .map((item) => (
-                  <Draggable key={item.name} id={`draggable-${item.name}`}>
-                    {item.name}
-                  </Draggable>
-                ))}
-            </Droppable>
-          </div>
-          <div className="container">
-            <h2>Done</h2>
-            <Droppable id="done">
-              {todoList
-                .filter((item) => item.status === "done")
-                .map((item) => (
-                  <Draggable key={item.name} id={`draggable-${item.name}`}>
-                    {item.name}
-                  </Draggable>
-                ))}
-            </Droppable>
-                </div>*/}
         </DndContext>
       </main>
     </>
