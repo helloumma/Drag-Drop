@@ -7,9 +7,15 @@ import Droppable from "./Droppable";
 
 import Form from "../components/form";
 
+import ToDoBoard from "../components/todo";
+import InProgressBoard from "../components/inProgress";
+import CompleteBoard from "../components/complete";
+
 export default function Home() {
   const [input, setInput] = useState<string>("");
-  const [todoList, setTodoList] = useState<{ name: string }[]>([]);
+  const [todoList, setTodoList] = useState<{ name: string; status: string }[]>(
+    []
+  );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -20,7 +26,7 @@ export default function Home() {
     if (input === "") return alert("please enter a value");
 
     const newList = todoList.slice();
-    newList.splice(0, 0, { name: input });
+    newList.splice(0, 0, { name: input, status: "to-do" });
     setTodoList(newList);
     setInput("");
   };
@@ -30,11 +36,41 @@ export default function Home() {
   //const draggableMarkup = <Draggable id="draggable">Drag me</Draggable>;
 
   function handleDragEnd(event) {
-    const { over } = event;
+    //const { over } = event;
 
     // If the item is dropped over a container, set it as the parent
     // otherwise reset the parent to `null`
-    setParent(over ? over.id : null);
+    //setParent(over ? over.id : null);
+    /* const { over } = event;
+    if (!over) return;
+
+    const oldList = todoList.slice();
+    const itemId = parseInt(event.active.id.split("-")[1]);
+    const item = oldList.find((item) => item.name === event.active.innerText);
+    const newList = oldList.filter(
+      (item) => item.name !== event.active.innerText
+    );
+    item.status = over.id;
+    newList.push(item);
+    setTodoList(newList);*/
+    const { over } = event;
+    if (!over) return;
+
+    const { id: parentId } = over;
+    const itemId = event.active.id;
+
+    const newList = todoList.map((item, id) => {
+      if (id === itemId) {
+        return {
+          ...item,
+          status: parentId,
+        };
+      } else {
+        return item;
+      }
+    });
+
+    setTodoList(newList);
   }
   return (
     <>
@@ -58,11 +94,81 @@ export default function Home() {
             </Droppable>
           ))*/}
 
-          {todoList.map((items: any, id: number) => (
+          {/*todoList.map((items: any, id: number) => (
             <Droppable key={id} id={id}>
               <Draggable id={`draggable-${id}`}>{items.name}</Draggable>
             </Droppable>
-          ))}
+          ))*/}
+          <ToDoBoard>
+            {todoList.map((item, id) => {
+              if (item.status === "to-do") {
+                return (
+                  <Draggable key={id} id={id}>
+                    <p>{item.name}</p>
+                  </Draggable>
+                );
+              }
+            })}
+          </ToDoBoard>
+          <InProgressBoard>
+            {todoList.map((item, id) => {
+              if (item.status === "in-progress") {
+                return (
+                  <Draggable key={id} id={id}>
+                    <p>{item.name}</p>
+                  </Draggable>
+                );
+              }
+            })}
+          </InProgressBoard>
+          <CompleteBoard>
+            {todoList.map((item, id) => {
+              if (item.status === "done") {
+                return (
+                  <Draggable key={id} id={id}>
+                    <p>{item.name}</p>
+                  </Draggable>
+                );
+              }
+            })}
+          </CompleteBoard>
+
+          {/*<div className="container">
+            <h2>To Do</h2>
+            <Droppable id="to-do">
+              {todoList
+                .filter((item) => item.status === "to-do")
+                .map((item) => (
+                  <Draggable key={item.name} id={`draggable-${item.name}`}>
+                    {item.name}
+                  </Draggable>
+                ))}
+            </Droppable>
+          </div>
+          <div className="container">
+            <h2>In Progress</h2>
+            <Droppable id="in-progress">
+              {todoList
+                .filter((item) => item.status === "in-progress")
+                .map((item) => (
+                  <Draggable key={item.name} id={`draggable-${item.name}`}>
+                    {item.name}
+                  </Draggable>
+                ))}
+            </Droppable>
+          </div>
+          <div className="container">
+            <h2>Done</h2>
+            <Droppable id="done">
+              {todoList
+                .filter((item) => item.status === "done")
+                .map((item) => (
+                  <Draggable key={item.name} id={`draggable-${item.name}`}>
+                    {item.name}
+                  </Draggable>
+                ))}
+            </Droppable>
+                </div>*/}
         </DndContext>
       </main>
     </>
