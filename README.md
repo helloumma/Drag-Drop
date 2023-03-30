@@ -52,6 +52,7 @@ Enables users to be able to add items through an input and, drag and drop these 
 - React
 - NextJS
 - Dnd Kit
+- Chakra UI
 
 ### 🔧How to Run the App
 
