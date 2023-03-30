@@ -1,7 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useDroppable } from "@dnd-kit/core";
 
-export default function ToDoBoard(props) {
+interface props {
+  children: ReactNode;
+}
+
+const ToDoBoard = (props: props) => {
   const { isOver, setNodeRef } = useDroppable({
     id: "to-do",
   });
@@ -18,4 +22,6 @@ export default function ToDoBoard(props) {
       {props.children}
     </div>
   );
-}
+};
+
+export default ToDoBoard;

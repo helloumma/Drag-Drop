@@ -1,7 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useDroppable } from "@dnd-kit/core";
 
-export default function CompleteBoard(props) {
+interface props {
+  children: ReactNode;
+}
+
+const CompleteBoard = (props: props) => {
   const { isOver, setNodeRef } = useDroppable({
     id: "done",
   });
@@ -19,4 +23,6 @@ export default function CompleteBoard(props) {
       {props.children}
     </div>
   );
-}
+};
+
+export default CompleteBoard;

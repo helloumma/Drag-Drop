@@ -30,7 +30,7 @@ export default function Home() {
     setInput("");
   };
 
-  function handleDragEnd(event) {
+  const handleDragEnd = (event: any) => {
     const { over } = event;
     if (!over) return;
 
@@ -49,7 +49,7 @@ export default function Home() {
     });
 
     setTodoList(newList);
-  }
+  };
   return (
     <>
       <Head>
