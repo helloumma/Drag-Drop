@@ -1,6 +1,6 @@
 # ✋Drag and Drop
 
-Enables users to be able to add items through an input and, drag and drop these items in three boards called, "To Do", "In Progress" and "Completed".
+Enables users to be able to add items through an input and, drag and drop these items on three boards called, "To Do", "In Progress" and "Completed".
 
 ### 📋Aims of App
 
