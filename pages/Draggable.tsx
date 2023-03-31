@@ -7,10 +7,10 @@ export default function Draggable(props: any) {
   });
   const style = transform
     ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0`,
       }
     : undefined;
-
+  console.log(props.id);
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
       {props.children}
