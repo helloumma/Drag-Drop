@@ -71,7 +71,7 @@ export default function Home() {
                   {todoList.map((item, id: number) => {
                     if (item.status === "to-do") {
                       return (
-                        <ul>
+                        <ul key={id}>
                           <Draggable key={id} id={id + 1}>
                             <li>{item.name}</li>
                           </Draggable>
@@ -88,7 +88,7 @@ export default function Home() {
                   {todoList.map((item, id: number) => {
                     if (item.status === "in-progress") {
                       return (
-                        <ul>
+                        <ul key={id}>
                           <Draggable key={id} id={id + 1}>
                             <li>{item.name}</li>
                           </Draggable>
@@ -105,7 +105,7 @@ export default function Home() {
                   {todoList.map((item, id: number) => {
                     if (item.status === "done") {
                       return (
-                        <ul>
+                        <ul key={id}>
                           <Draggable key={id} id={id + 1}>
                             <li>
                               <s>{item.name}</s>
