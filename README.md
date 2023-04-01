@@ -26,4 +26,3 @@ https://main--jolly-gingersnap-9c25c4.netlify.app/
 ### 💭Future Improvements
 
 - Testing
-- Fix bug of first item added to list not being draggable/droppable
