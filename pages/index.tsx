@@ -104,9 +104,11 @@ export default function Home() {
                   {todoList.map((item, id: number) => {
                     if (item.status === "to-do") {
                       return (
-                        <Draggable key={id} id={id + 1}>
-                          <p>{item.name}</p>
-                        </Draggable>
+                        <ul>
+                          <Draggable key={id} id={id + 1}>
+                            <li>{item.name}</li>
+                          </Draggable>
+                        </ul>
                       );
                     }
                   })}
@@ -119,9 +121,11 @@ export default function Home() {
                   {todoList.map((item, id: number) => {
                     if (item.status === "in-progress") {
                       return (
-                        <Draggable key={id} id={id + 1}>
-                          <p>{item.name}</p>
-                        </Draggable>
+                        <ul>
+                          <Draggable key={id} id={id + 1}>
+                            <li>{item.name}</li>
+                          </Draggable>
+                        </ul>
                       );
                     }
                   })}
@@ -129,14 +133,18 @@ export default function Home() {
               </Center>
             </WrapItem>
             <WrapItem>
-              <Center w="33vw" bg="green.200">
+              <Center w="32.5vw" bg="green.200">
                 <CompleteBoard>
                   {todoList.map((item, id: number) => {
                     if (item.status === "done") {
                       return (
-                        <Draggable key={id} id={id + 1}>
-                          <s>{item.name}</s>
-                        </Draggable>
+                        <ul>
+                          <Draggable key={id} id={id + 1}>
+                            <li>
+                              <s>{item.name}</s>
+                            </li>
+                          </Draggable>
+                        </ul>
                       );
                     }
                   })}
