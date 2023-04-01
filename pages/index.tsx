@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 
-import { DndContext } from "@dnd-kit/core";
+import { DndContext, useDroppable } from "@dnd-kit/core";
 import Draggable from "./Draggable";
 
 import Form from "../components/form";
@@ -9,6 +9,7 @@ import Form from "../components/form";
 import ToDoBoard from "../components/todo";
 import InProgressBoard from "../components/inProgress";
 import CompleteBoard from "../components/complete";
+import { Center, Flex, Wrap, WrapItem } from "@chakra-ui/react";
 
 export default function Home() {
   const [input, setInput] = useState<string>("");
@@ -50,6 +51,7 @@ export default function Home() {
     });
     setTodoList(newList);
   };
+
   return (
     <>
       <Head>
@@ -60,40 +62,63 @@ export default function Home() {
       </Head>
       <main>
         <Form input={input} onChange={onChange} onSubmit={onSubmit} />
+
         <DndContext onDragEnd={handleDragEnd}>
-          <ToDoBoard>
-            {todoList.map((item, id: number) => {
-              if (item.status === "to-do") {
-                return (
-                  <Draggable key={id} id={id + 1}>
-                    <p>{item.name}</p>
-                  </Draggable>
-                );
-              }
-            })}
-          </ToDoBoard>
-          <InProgressBoard>
-            {todoList.map((item, id: number) => {
-              if (item.status === "in-progress") {
-                return (
-                  <Draggable key={id} id={id + 1}>
-                    <p>{item.name}</p>
-                  </Draggable>
-                );
-              }
-            })}
-          </InProgressBoard>
-          <CompleteBoard>
-            {todoList.map((item, id: number) => {
-              if (item.status === "done") {
-                return (
-                  <Draggable key={id} id={id + 1}>
-                    <p>{item.name}</p>
-                  </Draggable>
-                );
-              }
-            })}
-          </CompleteBoard>
+          <Wrap>
+            <WrapItem>
+              <Center w="33vw" bg="red.200">
+                <ToDoBoard>
+                  {todoList.map((item, id: number) => {
+                    if (item.status === "to-do") {
+                      return (
+                        <ul key={id}>
+                          <Draggable key={id} id={id + 1}>
+                            <li>{item.name}</li>
+                          </Draggable>
+                        </ul>
+                      );
+                    }
+                  })}
+                </ToDoBoard>
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center w="33vw" bg="blue.200">
+                <InProgressBoard>
+                  {todoList.map((item, id: number) => {
+                    if (item.status === "in-progress") {
+                      return (
+                        <ul key={id}>
+                          <Draggable key={id} id={id + 1}>
+                            <li>{item.name}</li>
+                          </Draggable>
+                        </ul>
+                      );
+                    }
+                  })}
+                </InProgressBoard>
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center w="32.8vw" bg="green.200">
+                <CompleteBoard>
+                  {todoList.map((item, id: number) => {
+                    if (item.status === "done") {
+                      return (
+                        <ul key={id}>
+                          <Draggable key={id} id={id + 1}>
+                            <li>
+                              <s>{item.name}</s>
+                            </li>
+                          </Draggable>
+                        </ul>
+                      );
+                    }
+                  })}
+                </CompleteBoard>
+              </Center>
+            </WrapItem>
+          </Wrap>
         </DndContext>
       </main>
     </>

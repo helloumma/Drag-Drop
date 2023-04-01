@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { useDroppable } from "@dnd-kit/core";
+import { Text } from "@chakra-ui/react";
 
 interface props {
   children: ReactNode;
@@ -10,15 +11,16 @@ const ToDoBoard = (props: props) => {
     id: "to-do",
   });
   const style = {
-    backgroundColor: isOver ? "lightblue" : "white",
+    color: isOver ? "white" : "red",
     padding: "10px",
-    border: "1px solid black",
     marginBottom: "10px",
   };
 
   return (
     <div ref={setNodeRef} style={style}>
-      <h2>To-Do</h2>
+      <Text fontSize="4xl" as="b">
+        To Do
+      </Text>
       {props.children}
     </div>
   );

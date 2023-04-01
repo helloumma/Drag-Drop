@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { useDroppable } from "@dnd-kit/core";
+import { Text } from "@chakra-ui/react";
 
 interface props {
   children: ReactNode;
@@ -10,15 +11,16 @@ const InProgressBoard = (props: props) => {
     id: "in-progress",
   });
   const style = {
-    backgroundColor: isOver ? "lightyellow" : "white",
+    color: isOver ? "white" : "blue",
     padding: "10px",
-    border: "1px solid black",
     marginBottom: "10px",
   };
 
   return (
     <div ref={setNodeRef} style={style}>
-      <h2>In-Progress</h2>
+      <Text fontSize="4xl" as="b">
+        In Progress
+      </Text>
       {props.children}
     </div>
   );
