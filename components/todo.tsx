@@ -10,9 +10,8 @@ const ToDoBoard = (props: props) => {
     id: "to-do",
   });
   const style = {
-    backgroundColor: isOver ? "lightblue" : "white",
+    color: isOver ? "white" : "red",
     padding: "10px",
-    border: "1px solid black",
     marginBottom: "10px",
   };
 

@@ -10,9 +10,8 @@ const InProgressBoard = (props: props) => {
     id: "in-progress",
   });
   const style = {
-    backgroundColor: isOver ? "lightyellow" : "white",
+    color: isOver ? "white" : "blue",
     padding: "10px",
-    border: "1px solid black",
     marginBottom: "10px",
   };
 

@@ -10,11 +10,9 @@ const CompleteBoard = (props: props) => {
     id: "done",
   });
   const style = {
-    backgroundColor: isOver ? "lightgreen" : "white",
+    color: isOver ? "white" : "green",
     padding: "10px",
-    border: "1px solid black",
     marginBottom: "10px",
-    textDecoration: "line-through",
   };
 
   return (
