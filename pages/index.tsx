@@ -10,8 +10,6 @@ import ToDoBoard from "../components/todo";
 import InProgressBoard from "../components/inProgress";
 import CompleteBoard from "../components/complete";
 
-type BoardType = "to-do" | "in-progress" | "done";
-
 export default function Home() {
   const [input, setInput] = useState<string>("");
   const [todoList, setTodoList] = useState<{ name: string; status: string }[]>(
@@ -40,6 +38,9 @@ export default function Home() {
     const itemId = e.active.id;
 
     const newList = todoList.map((item, id) => {
+      console.log(id, "id");
+      console.log(itemId, "itemId");
+      id = id + 1;
       if (id === itemId) {
         return {
           ...item,
@@ -66,7 +67,7 @@ export default function Home() {
             {todoList.map((item, id: number) => {
               if (item.status === "to-do") {
                 return (
-                  <Draggable key={id} id={id}>
+                  <Draggable key={id} id={id + 1}>
                     <p>{item.name}</p>
                   </Draggable>
                 );
@@ -77,7 +78,7 @@ export default function Home() {
             {todoList.map((item, id: number) => {
               if (item.status === "in-progress") {
                 return (
-                  <Draggable key={id} id={id}>
+                  <Draggable key={id} id={id + 1}>
                     <p>{item.name}</p>
                   </Draggable>
                 );
@@ -88,7 +89,7 @@ export default function Home() {
             {todoList.map((item, id: number) => {
               if (item.status === "done") {
                 return (
-                  <Draggable key={id} id={id}>
+                  <Draggable key={id} id={id + 1}>
                     <p>{item.name}</p>
                   </Draggable>
                 );
