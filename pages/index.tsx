@@ -52,32 +52,6 @@ export default function Home() {
     setTodoList(newList);
   };
 
-  const { isOver, setNodeRef } = useDroppable({
-    id: "to-do",
-  });
-
-  const toDoStyle = {
-    backgroundColor: isOver ? "lightblue" : "white",
-    padding: "10px",
-    border: "1px solid black",
-    marginBottom: "10px",
-  };
-
-  const inProgressStyle = {
-    backgroundColor: isOver ? "lightyellow" : "white",
-    padding: "10px",
-    border: "1px solid black",
-    marginBottom: "10px",
-  };
-
-  const doneStyle = {
-    backgroundColor: isOver ? "lightgreen" : "white",
-    padding: "10px",
-    border: "1px solid black",
-    marginBottom: "10px",
-    textDecoration: "line-through",
-  };
-
   return (
     <>
       <Head>
@@ -90,13 +64,6 @@ export default function Home() {
         <Form input={input} onChange={onChange} onSubmit={onSubmit} />
 
         <DndContext onDragEnd={handleDragEnd}>
-          {/*
-            <Board style={todo}>
-              {todoList.map((item, id: number) => {
-                if(item.status === "to-do") ...
-              })}
-            </Board>
-           */}
           <Wrap>
             <WrapItem>
               <Center w="33vw" bg="red.200">
@@ -133,7 +100,7 @@ export default function Home() {
               </Center>
             </WrapItem>
             <WrapItem>
-              <Center w="32.5vw" bg="green.200">
+              <Center w="32.8vw" bg="green.200">
                 <CompleteBoard>
                   {todoList.map((item, id: number) => {
                     if (item.status === "done") {
