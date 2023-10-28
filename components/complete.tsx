@@ -1,12 +1,9 @@
 import React, { ReactNode } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Text } from "@chakra-ui/react";
+import { props as completeProps } from "../lib/complete";
 
-interface props {
-  children: ReactNode;
-}
-
-const CompleteBoard = (props: props) => {
+const CompleteBoard = (props: completeProps) => {
   const { isOver, setNodeRef } = useDroppable({
     id: "done",
   });

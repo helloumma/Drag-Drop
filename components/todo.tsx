@@ -1,12 +1,9 @@
 import React, { ReactNode } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Text } from "@chakra-ui/react";
+import { props as toDoProps } from "../lib/inProgress";
 
-interface props {
-  children: ReactNode;
-}
-
-const ToDoBoard = (props: props) => {
+const ToDoBoard = (props: toDoProps) => {
   const { isOver, setNodeRef } = useDroppable({
     id: "to-do",
   });

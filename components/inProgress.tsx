@@ -1,12 +1,9 @@
 import React, { ReactNode } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Text } from "@chakra-ui/react";
+import { props as inProgressProps } from "../lib/inProgress";
 
-interface props {
-  children: ReactNode;
-}
-
-const InProgressBoard = (props: props) => {
+const InProgressBoard = (props: inProgressProps) => {
   const { isOver, setNodeRef } = useDroppable({
     id: "in-progress",
   });
