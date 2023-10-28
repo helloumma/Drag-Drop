@@ -1,15 +1,9 @@
 import Head from "next/head";
 import { useState } from "react";
-
-import { DndContext, useDroppable } from "@dnd-kit/core";
+import { DndContext } from "@dnd-kit/core";
 import Draggable from "./Draggable";
-
-import Form from "../components/form";
-
-import ToDoBoard from "../components/todo";
-import InProgressBoard from "../components/inProgress";
-import CompleteBoard from "../components/complete";
-import { Center, Flex, Wrap, WrapItem } from "@chakra-ui/react";
+import { Form, ToDoBoard, InProgressBoard, CompleteBoard } from "../components";
+import { Center, Wrap, WrapItem } from "@chakra-ui/react";
 
 export default function Home() {
   const [input, setInput] = useState<string>("");
